@@ -3,6 +3,9 @@
     <audio src="/audio/begin.mp3" ref="beginPlayer"></audio>
     <audio src="/audio/end.mp3" ref="endPlayer"></audio>
     <h1>{{ activeTimePoint.name }}</h1>
+    <h4>
+      {{ timeDistance }}后{{ activeTimePoint.nextPoint.on ? "上课" : "下课" }}
+    </h4>
     <q-btn @click="tip">使用前戳我一下</q-btn>
   </q-page>
 </template>
@@ -160,7 +163,12 @@ const lessons = [
   },
 ];
 
-const activeTimePoint = ref({});
+const activeTimePoint = ref({
+  nextPoint: {
+    time: {},
+  },
+  last: false,
+});
 
 const lessonOn = ref(null);
 
@@ -170,6 +178,39 @@ const currentTimePoint = reactive({
     minute: new Date().getMinutes(),
   },
 });
+
+const timeDistance = ref("一段时间");
+
+function calculateTimeDistance() {
+  const dateBegin = new Date();
+  const dateEnd = new Date();
+  dateEnd.setHours(activeTimePoint.value.nextPoint.time.hour);
+  dateEnd.setMinutes(activeTimePoint.value.nextPoint.time.minute);
+  dateEnd.setSeconds(0);
+  if (activeTimePoint.value.last) {
+    dateEnd.setDate(dateEnd.getDate() + 1);
+  }
+  const dateDiff = dateEnd.getTime() - dateBegin.getTime(); //时间差的毫秒数
+  const leave1 = dateDiff % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
+  const hours = Math.floor(leave1 / (3600 * 1000)); //计算出小时数
+  //计算相差分钟数
+  const leave2 = leave1 % (3600 * 1000); //计算小时数后剩余的毫秒数
+  const minutes = Math.floor(leave2 / (60 * 1000)); //计算相差分钟数
+  //计算相差秒数
+  const leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
+  const seconds = Math.round(leave3 / 1000);
+  let timesString = "";
+
+  if (hours !== 0) {
+    timesString = `${hours}小时${minutes}分钟${seconds}秒`;
+  } else if (hours === 0 && minutes !== 0) {
+    timesString = `${minutes}分钟${seconds}秒`;
+  } else if (hours === 0 && minutes === 0) {
+    timesString = `${seconds}秒`;
+  }
+
+  return timesString;
+}
 
 function tip() {
   console.log("被戳了");
@@ -260,6 +301,7 @@ onMounted(() => {
   setInterval(() => {
     currentTimePoint.time.hour = new Date().getHours();
     currentTimePoint.time.minute = new Date().getMinutes();
+    timeDistance.value = calculateTimeDistance();
   }, 1000);
 });
 </script>
