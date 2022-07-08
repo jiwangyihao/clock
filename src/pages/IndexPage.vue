@@ -2,7 +2,7 @@
   <q-page class="flex flex-center column">
     <audio src="/audio/begin.mp3" ref="beginPlayer"></audio>
     <audio src="/audio/end.mp3" ref="endPlayer"></audio>
-    <h1>{{ activeTimePoint.name }}</h1>
+    <h2>{{ activeTimePoint.name }}</h2>
     <h4>
       {{ timeDistance }}后{{ activeTimePoint.nextPoint.on ? "上课" : "下课" }}
     </h4>
