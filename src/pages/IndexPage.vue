@@ -19,146 +19,135 @@ const endPlayer = ref(null);
 //数据
 const lessons = [
   {
-    name: "上午第0节",
+    name: "早读",
     begin: {
-      hour: 7,
-      minute: 0,
+      hour: 6,
+      minute: 20,
     },
     end: {
       hour: 7,
-      minute: 30,
-    },
-  },
-  {
-    name: "上午第1节",
-    begin: {
-      hour: 7,
-      minute: 40,
-    },
-    end: {
-      hour: 8,
       minute: 20,
     },
   },
   {
-    name: "上午第2节",
+    name: "化学",
     begin: {
       hour: 8,
       minute: 30,
     },
     end: {
       hour: 9,
-      minute: 10,
+      minute: 30,
     },
   },
   {
-    name: "上午第3节",
+    name: "化学",
     begin: {
       hour: 9,
       minute: 40,
     },
     end: {
       hour: 10,
-      minute: 20,
+      minute: 40,
     },
   },
   {
-    name: "上午第4节",
+    name: "数学",
     begin: {
       hour: 10,
-      minute: 30,
+      minute: 50,
     },
     end: {
       hour: 11,
-      minute: 10,
+      minute: 50,
     },
   },
   {
-    name: "上午第5节",
+    name: "语文",
     begin: {
-      hour: 11,
-      minute: 20,
+      hour: 13,
+      minute: 0,
     },
     end: {
-      hour: 12,
+      hour: 14,
       minute: 0,
     },
   },
   {
-    name: "下午第1节",
+    name: "生物",
     begin: {
       hour: 14,
       minute: 30,
     },
     end: {
       hour: 15,
-      minute: 10,
+      minute: 25,
     },
   },
   {
-    name: "下午第2节",
+    name: "生物",
     begin: {
       hour: 15,
-      minute: 25,
+      minute: 35,
     },
     end: {
       hour: 16,
-      minute: 5,
+      minute: 30,
     },
   },
   {
-    name: "下午第3节",
+    name: "英语",
     begin: {
-      hour: 16,
+      hour: 17,
+      minute: 0,
+    },
+    end: {
+      hour: 18,
+      minute: 0,
+    },
+  },
+  {
+    name: "物理",
+    begin: {
+      hour: 18,
       minute: 15,
     },
     end: {
-      hour: 16,
-      minute: 55,
-    },
-  },
-  {
-    name: "下午第4节",
-    begin: {
-      hour: 17,
-      minute: 0,
-    },
-    end: {
-      hour: 17,
-      minute: 40,
-    },
-  },
-  {
-    name: "晚自习第1节",
-    begin: {
-      hour: 18,
-      minute: 40,
-    },
-    end: {
       hour: 19,
-      minute: 40,
+      minute: 15,
     },
   },
   {
-    name: "晚自习第2节",
+    name: "物理",
     begin: {
       hour: 19,
-      minute: 50,
+      minute: 30,
     },
     end: {
       hour: 20,
-      minute: 50,
+      minute: 30,
     },
   },
   {
-    name: "晚自习第3节",
+    name: "数学",
     begin: {
       hour: 21,
       minute: 0,
     },
     end: {
-      hour: 21,
-      minute: 30,
+      hour: 22,
+      minute: 0,
+    },
+  },
+  {
+    name: "自习",
+    begin: {
+      hour: 22,
+      minute: 10,
+    },
+    end: {
+      hour: 23,
+      minute: 10,
     },
   },
 ];
